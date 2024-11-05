@@ -1,72 +1,84 @@
 let inventory = [];
 
-// Funzione per cambiare scena
+// Funzione per cambiare scena e visualizzare oggetti unici per ogni scena
 function changeScene(scene) {
     const sceneBg = document.getElementById("scene-bg");
     const dialogueText = document.getElementById("dialogue-text");
     const objectSample = document.getElementById("object-sample");
     const objectScanner = document.getElementById("object-scanner");
 
-    // Nascondi oggetti per evitare che siano visibili in tutte le scene
+    // Nascondi oggetti di default
     objectSample.style.display = 'none';
     objectScanner.style.display = 'none';
 
-    // Aggiorna la scena in base alla selezione e modifica gli oggetti
+    // Rimuovi eventuali altri simboli aggiunti
+    objectSample.textContent = '';
+    objectScanner.textContent = '';
+
     if (scene === 'planet') {
         sceneBg.src = 'images/alien_planet.png';
-        dialogueText.textContent = 'Sei atterrato sul pianeta alieno. Cerca indizi di vita.';
+        dialogueText.textContent = 'Sei atterrato sul pianeta alieno. Cerca tracce di vita e indizi!';
 
-        // Oggetto speciale per il pianeta, con simbolo 🪐
+        // Oggetti specifici per il pianeta
         objectSample.style.display = 'block';
-        objectSample.textContent = '🪐';
+        objectSample.textContent = '🪐'; // Minerale Luminescente
         randomizePosition(objectSample);
-        objectSample.onclick = function() { pickUpItem('Minerale Raro'); };
+        objectSample.onclick = function() { pickUpItem('Minerale Luminescente'); };
+
+        objectScanner.style.display = 'block';
+        objectScanner.textContent = '🌱'; // Campione di Spora Straniera
+        randomizePosition(objectScanner);
+        objectScanner.onclick = function() { pickUpItem('Campione di Spora Straniera'); };
 
     } else if (scene === 'cave') {
         sceneBg.src = 'images/cave.png';
-        dialogueText.textContent = 'Hai trovato una caverna misteriosa. Potrebbero esserci tracce di antichi organismi.';
+        dialogueText.textContent = 'Hai trovato una caverna misteriosa! Potrebbero esserci tracce di antichi organismi.';
 
-        // Oggetto speciale per la caverna, con simbolo 🔮
         objectSample.style.display = 'block';
-        objectSample.textContent = '🔮';
+        objectSample.textContent = '🔮'; // Cristallo Alieno
         randomizePosition(objectSample);
         objectSample.onclick = function() { pickUpItem('Cristallo Alieno'); };
 
+        objectScanner.style.display = 'block';
+        objectScanner.textContent = '☠️'; // Ossa Fossilizzate
+        randomizePosition(objectScanner);
+        objectScanner.onclick = function() { pickUpItem('Ossa Fossilizzate'); };
+
     } else if (scene === 'structure') {
         sceneBg.src = 'images/ancient_structure.png';
-        dialogueText.textContent = 'Ti trovi davanti a una struttura aliena. Prova a decifrare i simboli.';
+        dialogueText.textContent = 'Ti trovi davanti a una struttura aliena. Prova a decifrare i simboli e cerca artefatti!';
 
-        // Oggetto speciale per la struttura antica, con simbolo 📜
+        objectSample.style.display = 'block';
+        objectSample.textContent = '📜'; // Pezzo di Codice Antico
+        randomizePosition(objectSample);
+        objectSample.onclick = function() { pickUpItem('Pezzo di Codice Antico'); };
+
         objectScanner.style.display = 'block';
-        objectScanner.textContent = '📜';
+        objectScanner.textContent = '💎'; // Cristallo Magnetico
         randomizePosition(objectScanner);
-        objectScanner.onclick = function() { pickUpItem('Codice Antico'); };
+        objectScanner.onclick = function() { pickUpItem('Cristallo Magnetico'); };
 
     } else {
-        // Torna alla scena del laboratorio
         sceneBg.src = 'images/laboratory.png';
-        dialogueText.textContent = 'Sei tornato al laboratorio.';
+        dialogueText.textContent = 'Sei tornato al laboratorio spaziale. Raccogli i tuoi strumenti per iniziare l’esplorazione!';
 
-        // Oggetti del laboratorio, con simboli 🔬 e 📡
         objectSample.style.display = 'block';
-        objectSample.textContent = '🔬';
+        objectSample.textContent = '🔬'; // Microscopio Portatile
         randomizePosition(objectSample);
-        objectSample.onclick = function() { pickUpItem('Campione Biologico'); };
+        objectSample.onclick = function() { pickUpItem('Microscopio Portatile'); };
 
         objectScanner.style.display = 'block';
-        objectScanner.textContent = '📡';
+        objectScanner.textContent = '🗝️'; // Chiave del Teletrasporto
         randomizePosition(objectScanner);
-        objectScanner.onclick = function() { pickUpItem('Scanner Portatile'); };
+        objectScanner.onclick = function() { pickUpItem('Chiave del Teletrasporto'); };
     }
 }
 
-// Funzione per randomizzare la posizione degli oggetti
 function randomizePosition(object) {
     const container = document.getElementById("scene");
-    const maxX = container.clientWidth - 50; // Limite orizzontale
-    const maxY = container.clientHeight - 50; // Limite verticale
+    const maxX = container.clientWidth - 50;
+    const maxY = container.clientHeight - 50;
 
-    // Posizione randomica
     const randomX = Math.floor(Math.random() * maxX);
     const randomY = Math.floor(Math.random() * maxY);
 
@@ -74,7 +86,6 @@ function randomizePosition(object) {
     object.style.top = `${randomY}px`;
 }
 
-// Funzione per raccogliere oggetti
 function pickUpItem(item) {
     if (!inventory.includes(item)) {
         inventory.push(item);
@@ -84,7 +95,6 @@ function pickUpItem(item) {
     }
 }
 
-// Funzione per visualizzare l’inventario
 function viewInventory() {
     alert("Inventario: " + inventory.join(", "));
 }
