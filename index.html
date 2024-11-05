@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrobiology Adventure: The Lost Life</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Scena attuale -->
+        <div id="scene" class="scene">
+            <img id="scene-bg" src="images/laboratory.jpg" alt="Laboratorio Spaziale">
+            <div id="object-sample" class="object" onclick="pickUpItem('Campione Biologico')">🔬</div>
+            <div id="object-scanner" class="object" onclick="pickUpItem('Scanner Portatile')">📡</div>
+        </div>
+
+        <!-- Dialoghi e testo di scena -->
+        <div id="dialogue-box">
+            <p id="dialogue-text">Benvenuto nel laboratorio! Raccogli i tuoi strumenti per iniziare l'esplorazione.</p>
+        </div>
+
+        <!-- Pannello di controllo per esplorazione -->
+        <div id="controls">
+            <button onclick="changeScene('planet')">Esplora il Pianeta</button>
+            <button onclick="changeScene('cave')">Vai alla Caverna</button>
+            <button onclick="changeScene('structure')">Visita la Struttura Antica</button>
+            <button onclick="viewInventory()">Inventario</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
