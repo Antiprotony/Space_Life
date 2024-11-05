@@ -85,4 +85,15 @@ function randomizePosition(object) {
     object.style.top = `${randomY}px`;
 }
 
-function
+function pickUpItem(item) {
+    if (!inventory.includes(item)) {
+        inventory.push(item);
+        document.getElementById("dialogue-text").textContent = `Hai raccolto: ${item}`;
+    } else {
+        document.getElementById("dialogue-text").textContent = `Hai già raccolto questo oggetto.`;
+    }
+}
+
+function viewInventory() {
+    alert("Inventario: " + inventory.join(", "));
+}
