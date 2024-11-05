@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Astrobiology Adventure: The Lost Life</title>
+    <title>Astrobiology Adventure: Misteri su Gliese 581g</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="game-container">
+    <!-- Schermata Iniziale -->
+    <div id="start-screen">
+        <h1>Astrobiology Adventure: Misteri su Gliese 581g</h1>
+        <p>Benvenuto, esploratore! Sei il Dr. Liora Star, astrobiologo di fama interstellare. La tua missione è svelare i misteri del pianeta Gliese 581g, un mondo alieno ricco di segreti e forse, tracce di vita intelligente. Ma attenzione! Il tuo rivale, il famigerato Dr. Zorg Grodd, ti ha preceduto e ha riempito il pianeta di trappole e indovinelli alieni.</p>
+        <p>Raccogli oggetti, risolvi enigmi e scopri il segreto di Gliese prima che Zorg prenda tutto il merito. Sei pronto per l’avventura?</p>
+        <button onclick="startGame()">Inizia</button>
+    </div>
+
+    <!-- Container di gioco principale (nascosto all'inizio) -->
+    <div id="game-container" style="display: none;">
         <!-- Scena attuale -->
         <div id="scene" class="scene">
             <img id="scene-bg" src="images/laboratory.png" alt="Laboratorio Spaziale">
